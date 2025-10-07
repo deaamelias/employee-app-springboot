@@ -1,7 +1,7 @@
 
 ---
 
-# Employee App (Spring Boot 3.6.5)
+# Employee App (Spring Boot 3.3.4)
 
 This project contains a Spring Boot application with:
 
