@@ -1,0 +1,147 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Employees</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        main {
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 30px 0 20px;
+            color: #2c3e50;
+        }
+
+        button {
+            background: #3498db;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s ease;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        #salaries_wrapper {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Modal backdrop */
+        #formBackdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 999;
+        }
+
+        /* Modal box */
+        #formArea {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 25px 30px;
+            border-radius: 12px;
+            width: 350px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+        }
+
+        #formTitle {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        #formArea div {
+            margin-bottom: 12px;
+        }
+
+        label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #555;
+        }
+
+        input, select {
+            padding: 6px 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            width: 60%;
+            font-size: 14px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<h1>Salaries</h1>
+<p style="text-align:center;">
+    <button onclick="create()">➕ Create new salary</button>
+</p>
+
+<table id="salaries" class="display" style="width:100%">
+    <thead><tr><th>Emp No</th><th>Salary</th><th>From Date</th><th>To Date</th><th>Actions</th></tr></thead>
+</table>
+
+<div id="formBackdrop" onclick="closeForm()"></div>
+
+<div id="formArea" style="display:none;background:#fff;padding:20px;border-radius:10px;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;">
+    <h3 id="formTitle"></h3>
+    <div><label>Emp No: <input id="empNo"></label></div>
+    <div><label>Salary: <input id="salary"></label></div>
+    <div> <label>From Date: <input id="fromDate" type="date"></label></div>
+    <div><label>To Date: <input id="toDate" type="date"></label></div>
+    <div class="form-actions">
+        <button onclick="save()">💾 Save</button>
+        <button class="btn-secondary" onclick="closeForm()">✖ Cancel</button>
+    </div>
+</div>
+<script src="/js/salaries.js"></script>
+</body>
+</html>

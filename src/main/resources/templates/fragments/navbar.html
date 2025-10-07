@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div th:fragment="navbar">
+    <nav>
+        <div class="navbar-inner">
+            <div class="navbar-title">Employee Management</div>
+            <div class="navbar-links">
+                <a href="/employees">Employees</a>
+                <a href="/departments">Departments</a>
+                <a href="/dept_emp">Dept Employees</a>
+                <a href="/dept_manager">Dept Manager</a>
+                <a href="/salaries">Salaries</a>
+                <a href="/titles">Titles</a>
+            </div>
+        </div>
+    </nav>
+
+    <style>
+        nav {
+            background: white;
+            border-bottom: 1px solid #dcdfe3;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            padding: 12px 0;
+        }
+
+        .navbar-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .navbar-title {
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: #3498db;
+            background: #eaf4fc;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .navbar-links a:hover {
+            background: #3498db;
+            color: white;
+        }
+    </style>
+</div>
+</body>
+</html>

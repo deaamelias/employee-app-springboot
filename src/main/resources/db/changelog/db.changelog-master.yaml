@@ -1,0 +1,180 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: dea
+      changes:
+        - createTable:
+            tableName: employees
+            columns:
+              - column:
+                  name: emp_no
+                  type: INT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: birth_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: VARCHAR(14)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: VARCHAR(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gender
+                  type: VARCHAR(1)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: hire_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: dea
+      changes:
+        - createTable:
+            tableName: departments
+            columns:
+              - column:
+                  name: dept_no
+                  type: CHAR(4)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: dept_name
+                  type: VARCHAR(40)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+  - changeSet:
+      id: 3
+      author: dea
+      changes:
+        - createTable:
+            tableName: dept_emp
+            columns:
+              - column:
+                  name: emp_no
+                  type: INT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: dept_no
+                  type: CHAR(4)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: from_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: to_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 4
+      author: dea
+      changes:
+        - createTable:
+            tableName: dept_manager
+            columns:
+              - column:
+                  name: dept_no
+                  type: CHAR(4)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: emp_no
+                  type: INT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: from_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: to_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 5
+      author: dea
+      changes:
+        - createTable:
+            tableName: salaries
+            columns:
+              - column:
+                  name: emp_no
+                  type: INT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: salary
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: from_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: to_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 6
+      author: dea
+      changes:
+        - createTable:
+            tableName: titles
+            columns:
+              - column:
+                  name: emp_no
+                  type: INT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: title
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: from_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: to_date
+                  type: DATE
+                  constraints:
+                    nullable: true
+  - changeSet:
+      id: 7
+      author: dea
+      changes:
+        - addAutoIncrement:
+            columnName: emp_no
+            tableName: employees
+            generationType: ALWAYS
+            startWith: 1
+            incrementBy: 1

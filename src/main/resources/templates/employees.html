@@ -1,0 +1,168 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Employees</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        main {
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 30px 0 20px;
+            color: #2c3e50;
+        }
+
+        button {
+            background: #3498db;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s ease;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        #employees_wrapper {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Modal backdrop */
+        #formBackdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 999;
+        }
+
+        /* Modal box */
+        #formArea {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 25px 30px;
+            border-radius: 12px;
+            width: 350px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+        }
+
+        #formTitle {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        #formArea div {
+            margin-bottom: 12px;
+        }
+
+        label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #555;
+        }
+
+        input, select {
+            padding: 6px 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            width: 60%;
+            font-size: 14px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <h1>Employees</h1>
+    <p style="text-align:center;">
+        <button onclick="create()">➕ Create new employee</button>
+    </p>
+
+    <table id="employees" class="display" style="width:100%">
+        <thead>
+        <tr>
+            <th>Emp No</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Birth Date</th>
+            <th>Hire Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+    </table>
+
+
+<!-- Backdrop -->
+<div id="formBackdrop" onclick="closeForm()"></div>
+
+<!-- Modal form -->
+<div id="formArea">
+    <h3 id="formTitle">Create</h3>
+    <input type="hidden" id="empNo"/>
+    <div><label>First name: <input id="firstName"/></label></div>
+    <div><label>Last name: <input id="lastName"/></label></div>
+    <div><label>Gender:
+        <select id="gender">
+            <option value="M">M</option>
+            <option value="F">F</option>
+        </select>
+    </label></div>
+    <div><label>Birth date: <input id="birthDate" type="date"/></label></div>
+    <div><label>Hire date: <input id="hireDate" type="date"/></label></div>
+    <div class="form-actions">
+        <button onclick="save()">💾 Save</button>
+        <button class="btn-secondary" onclick="closeForm()">✖ Cancel</button>
+    </div>
+</div>
+
+<script src="/js/employees.js"></script>
+</body>
+</html>
